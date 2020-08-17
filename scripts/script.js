@@ -11,7 +11,7 @@ https: //github.com/BlueChihuahua/Rock-Paper_Scissors/blob/master/script.js
 
 //function for a round of play
 function playRound(playerSelection, computerSelection) {
-    let player = prompt("Choose your move: ", "Rock, Paper or Scissors").toUpperCase();
+    let player = prompt("Choose your move: (Rock, Paper or Scissors)").toUpperCase();
     let computer = computerPlay().toUpperCase();
 
     if (player == "ROCK" && computer == "ROCK") {
