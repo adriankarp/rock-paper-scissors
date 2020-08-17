@@ -43,6 +43,7 @@ function playRound(playerSelection, computerSelection) {
         return "win";
     } else {
         alert("Are sure you entered rock, paper or scissors!?");
+        return "invalid";
     }
 
 
@@ -60,6 +61,7 @@ function game() {
         if (result === "win") win += 1;
         if (result === "lose") lose += 1;
         if (result === "draw") draw += 1;
+        if (result === "invalid") i--;
     }
 
     alert(
