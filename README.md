@@ -8,6 +8,6 @@
 <br>
 <p>The game is played in the console. A message will promt the user to type rock, paper or scissors. A game consists of 5 rounds, and the score table will be displayed at the end.</p> 
 <br>
-<p>A front-end will be implemented</p>
+  <p><strong>A front-end will be implemented</strong></p>
 <br>
 <p>The project theme to be found <a href="https://www.theodinproject.com/lessons/rock-paper-scissors" target="_blank">here</a></p>
