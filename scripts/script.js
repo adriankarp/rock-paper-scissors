@@ -1,5 +1,3 @@
-https: //github.com/BlueChihuahua/Rock-Paper_Scissors/blob/master/script.js
-
     //function to obtain computer choice
     function computerPlay() {
 
