@@ -1,85 +1,87 @@
-    //function to obtain computer choice
-    function computerPlay() {
+let playerWin = 0;
+let computerWin = 0;
+let ties = 0;
 
-        let choices = ["Rock", "Paper", "Scissors"];
-        let computerMove = choices[Math.floor(Math.random() * choices.length)];
-        return computerMove;
+
+//function to obtain players choice
+function playerSelection() {
+    const playerSelection = document.querySelector("button[id]");
+    return playerSelection;
+}
+
+//function to obtain computer choice
+function computerPlay() {
+
+    let choices = ["rock", "paper", "scissors"];
+    let computerMove = choices[Math.floor(Math.random() * choices.length)];
+    return computerMove;
+}
+
+
+//function to reset the table
+function reset() {
+    playerWin = 0;
+    document.querySelector("#wins").innerHTML = 'Wins: 0';
+    computerWin = 0;
+    document.querySelector("#loses").innerHTML = 'Loses: 0';
+    ties = 0;
+    document.querySelector("#ties").innerHTML = 'Ties: 0';
+    document.querySelector("#roundResult").innerHTML = "Choose rock, paper or scissors";
+    return;
+}
+
+//function for winning
+function win(player, computer) {
+    document.querySelector("#roundResult").innerHTML = "You won, " + player + " beats " + computer;
+    document.querySelector("#wins").innerHTML = "Wins: " + playerWin;
+    if (playerWin == 5) {
+        alert("You are the winner! Good job");
+        reset();
     }
+}
+
+
+//function for losing
+function lose(player, computer) {
+    document.querySelector("#roundResult").innerHTML = "You lost, " + computer + " beats " + player;
+    document.querySelector("#loses").innerHTML = "Loses: " + computerWin;
+    if (computerWin == 5) {
+        alert("Too bad! You lost...");
+        reset();
+    }
+}
 
 
 //function for a round of play
-function playRound(playerSelection, computerSelection) {
-    let player = prompt("Choose your move: (Rock, Paper or Scissors)").toUpperCase();
-    let computer = computerPlay().toUpperCase();
-
-    if (player == "ROCK" && computer == "ROCK") {
-        alert("It's a tie!");
-        return "draw";
-    } else if (player == "PAPER" && computer == "PAPER") {
-        alert("It's a tie!");
-        return "draw";
-    } else if (player == "SCISSORS" && computer == "SCISSORS") {
-        alert("It's a tie!");
-        return "draw";
-    } else if (player == "ROCK" && computer == "PAPER") {
-        alert("You lose, paper beats rock!");
-        return "lose";
-    } else if (player == "ROCK" && computer == "SCISSORS") {
-        alert("You won, rock beats paper!");
-        return "win";
-    } else if (player == "PAPER" && computer == "ROCK") {
-        alert("You won, paper beats rock!");
-        return "win";
-    } else if (player == "PAPER" && computer == "SCISSORS") {
-        alert("You lose, scissors beats paper!");
-        return "lose";
-    } else if (player == "SCISSORS" && computer == "ROCK") {
-        alert("You lose, rock beats scissors!");
-        return "lose";
-    } else if (player == "SCISSORS" && computer == "PAPER") {
-        alert("You won, paper beats scissors!");
-        return "win";
+function playRound(playerSelection, computer) {
+    let player = playerSelection.toLowerCase();
+    if (player == "rock" && computer == "paper") {
+        computerWin++;
+        return lose(player, computer);
+    } else if (player == "paper" && computer == "scissors") {
+        computerWin++;
+        return lose(player, computer);
+    } else if (player == "scissors" && computer == "rock") {
+        computerWin++;
+        return lose(player, computer);
+    } else if (player == "rock" && computer == "scissors") {
+        playerWin++;
+        return win(player, computer);
+    } else if (player == "scissors" && computer == "paper") {
+        playerWin++;
+        return win(player, computer);
+    } else if (player == "paper" && computer == "rock") {
+        playerWin++;
+        return win(player, computer);
     } else {
-        alert("Are sure you entered rock, paper or scissors!?");
-        return "invalid";
-    }
-
-
-
-}
-
-//function for a 5 rounds game
-function game() {
-    let win = 0;
-    let lose = 0;
-    let draw = 0;
-
-    for (let i = 0; i < 5; i++) {
-        let result = playRound();
-        if (result === "win") win += 1;
-        if (result === "lose") lose += 1;
-        if (result === "draw") draw += 1;
-        if (result === "invalid") i--;
-    }
-
-    alert(
-        "Score: you have won " +
-        win +
-        " round(s), lost " +
-        lose +
-        " round(s), and tied " +
-        draw +
-        " round(s)."
-    );
-
-    if (win > lose) {
-        alert("You won! Congratulations.");
-    } else if (win < lose) {
-        alert("Too bad, you lost!");
-    } else {
-        alert("It's a draw!");
+        tie++;
+        document.querySelector("#roundResult").innerHTML = `It's a tie!`;
+        document.querySelector("#ties").innerHTML = `Ties: ` + ties;
     }
 }
 
-//call of function game();
-game();
+document.body.addEventListener('click', event => {
+    if (event.target.nodeName == "BUTTON") {
+        playRound(event.target.textContent, computerPlay());
+    }
+});

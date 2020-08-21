@@ -1,0 +1,39 @@
+body {
+    background-color: rgb(102, 157, 179);
+}
+
+#board {
+    text-align: center;
+    background-color: rgba(240, 246, 247, 0.514);
+    width: 500px;
+    height: 400px;
+    padding-top: 100px;
+    border-radius: 2rem;
+    margin: 150px auto;
+}
+
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: rgba(206, 201, 201, 0.685);
+    color: black;
+    width: 130px;
+    height: 40px;
+}
+
+#buttons {
+    margin: auto;
+    width: 100%;
+}
+
+#roundResult {
+    margin-top: 45px;
+    font-size: 23px;
+}
+
+#results {
+    margin-top: 25px;
+    font-size: 25px;
+}
